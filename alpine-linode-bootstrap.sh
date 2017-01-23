@@ -82,6 +82,7 @@ setup-apkrepos -f
 apk update
 
 setup-hostname -n $HOST
+printf "hostname: $HOST "
 printf "$INTERFACES" | setup-interfaces -i
 
 rc-update add networking boot
