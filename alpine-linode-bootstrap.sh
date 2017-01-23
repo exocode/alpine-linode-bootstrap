@@ -27,13 +27,13 @@ mount $BOOT_DEV /alpine/boot
 curl -s $MIRROR/$ALPINE_VER/main/$ARCH/apk-tools-static-${APK_TOOLS_VER}.apk | tar xz
 ./sbin/apk.static --repository $MIRROR/$ALPINE_VER/main/ --update-cache --allow-untrusted --root /alpine --initdb add alpine-base alpine-mirrors
 
-cat <<EOF >> /alpine/etc/fstab
+cat << EOF > /alpine/etc/fstab
 $ROOT_DEV    /   ext4    defaults,noatime    0   0
 $BOOT_DEV    /boot   ext4    defaults,noatime    0  1
 $SWAP_DEV    swap    swap    defaults    0   0
 EOF
 
-cat <<EOF > /alpine/etc/inittab
+cat << EOF > /alpine/etc/inittab
 # /etc/inittab
     
 ::sysinit:/sbin/openrc sysinit
@@ -51,7 +51,7 @@ ttyS0::respawn:/sbin/getty -L ttyS0 115200 vt100
 EOF
 
 mkdir /alpine/boot/grub
-cat <<EOF > /alpine/boot/grub/grub.cfg
+cat << EOF > /alpine/boot/grub/grub.cfg
 set root=(hd0)
 set default="Alpine Linux"
 set timeout=0
@@ -63,7 +63,7 @@ menuentry "Alpine Linux" {
 EOF
 
 mkdir /alpine/etc/mkinitfs
-cat <<EOF > /alpine/etc/mkinitfs/mkinitfs.conf
+cat << EOF > /alpine/etc/mkinitfs/mkinitfs.conf
 features="ata ide scsi virtio base ext4"
 EOF
 
