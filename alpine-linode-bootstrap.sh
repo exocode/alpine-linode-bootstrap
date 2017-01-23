@@ -67,7 +67,7 @@ cat << EOF > /alpine/etc/mkinitfs/mkinitfs.conf
 features="ata ide scsi virtio base ext4"
 EOF
 
-cp /etc/resolv.conf /alpine/etc
+cp /etc/resolv.conf /alpine/etc/resolv.conf
 
 echo ttyS0 >> /alpine/etc/securetty
 
