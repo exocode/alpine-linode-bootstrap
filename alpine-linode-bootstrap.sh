@@ -87,7 +87,7 @@ printf "$INTERFACES" | setup-interfaces -i
 
 rc-update add networking boot
 rc-update add urandom boot
-rc-update add cron
+rc-update add crond
 
 apk add linux-grsec
 
