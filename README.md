@@ -12,9 +12,13 @@ Boot the Linode into recovery mode with the disks assigned as above.
 
 ## Executing the Script
 
+Prepare to allow HTTPS
+    	
+    update-ca-certificates
+
 Connect to the Linode with Lish either via SSH or the browser console. To download and run the script:
 
-    curl -o- https://raw.githubusercontent.com/jac0/alpine-linode-bootstrap/master/alpine-linode-bootstrap.sh | bash
+    curl -o- https://raw.githubusercontent.com/exocode/alpine-linode-bootstrap/master/alpine-linode-bootstrap.sh | bash
 
 Once that finishes, shut the Linode down from recovery mode and, staying in the Lish console, run:
   
