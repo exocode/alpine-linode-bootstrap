@@ -1,4 +1,4 @@
-# Alpine Linode Bootstrap
+# Alpine Linode Docker Bootstrap
 
 A simple script that can be executed in recovery mode to bootstrap Alpine Linux on a Linode server.
 
@@ -68,7 +68,13 @@ Configure sudo to allow users in the sudo group to temporarily elevate their pri
 
     addgroup sudo
     adduser example-user sudo
-    
+  
+### Login with id_rsa.pub
+
+On server create a .ssh directory
+
+    mkdir -p ~/.ssh && chmod -R 700 ~/.ssh/
+  
 ### Install and configure SSH daemon
 
     setup-sshd
@@ -77,11 +83,14 @@ Linode recommends the `openssh` server if you want full SFTP access.
 `dropbear` is a more lightweight option, although it only provides SSH access.
 
 At this point, you should be able to connect to your server via SSH.
-    
+  
 
 ## Docker
 
 uncomment `http://dl-6.alpinelinux.org/alpine/edge/community` in `/etc/apk/repositories`
+
+    vi /etc/apk/repositories 
+    
     apk add docker
 
 To start the Docker daemon at boot, run:
