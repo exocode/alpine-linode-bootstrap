@@ -79,6 +79,31 @@ Linode recommends the `openssh` server if you want full SFTP access.
 At this point, you should be able to connect to your server via SSH.
     
 
+## Docker
+
+uncomment `http://dl-6.alpinelinux.org/alpine/edge/community` in `/etc/apk/repositories`
+    apk add docker
+
+To start the Docker daemon at boot, run:
+
+    rc-update add docker boot
+    
+Then to start the Docker daemon manually, run:
+
+    service docker start
+
+## Docker Compose
+
+To install docker-compose, first install pip:
+
+    apk add py-pip
+    
+Then install docker-compose, run:
+
+    pip install docker-compose
+
+
+
 
 ## Credit
 
