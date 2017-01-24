@@ -31,6 +31,8 @@ Connect to the Linode with Lish either via SSH or the browser console. To downlo
 
     curl -o- https://raw.githubusercontent.com/exocode/alpine-linode-bootstrap/master/alpine-linode-bootstrap.sh | bash
 
+__ if errors occour choose another mirror by uncommenting it 
+
 Once that finishes, shut the Linode down from recovery mode and, staying in the Lish console, run:
   
     boot 1
