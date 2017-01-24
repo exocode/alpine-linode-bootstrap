@@ -37,6 +37,49 @@ Once that finishes, shut the Linode down from recovery mode and, staying in the 
 
 After a bit, you should be at the Alpine login screen. The root user, by default, does not have a password. At this point, you can install an SSH server, which pretty much completes the installation.
 
+## Further Installation
+
+### Set up and start networking
+
+    setup-interfaces
+
+Press enter 3 times to accept the defaults of 
+    - eth0
+    - dhcp
+    - no
+
+then restart the networking service:
+    
+    service networking restart
+
+### Set a root password
+    
+    passwd
+    
+    adduser example-user
+    
+### Install sudo package
+
+    apk add sudo
+
+Configure sudo to allow users in the sudo group to temporarily elevate their privileges:
+
+    echo "%sudo   ALL=(ALL) ALL" >> /etc/sudoers
+
+    addgroup sudo
+    adduser example-user sudo
+    
+### Install and configure SSH daemon
+
+    setup-sshd
+
+Linode recommends the `openssh` server if you want full SFTP access. 
+`dropbear` is a more lightweight option, although it only provides SSH access.
+
+At this point, you should be able to connect to your server via SSH.
+    
+
+
 ## Credit
 
 This script is basically [Andy Leap's guide](https://github.com/andyleap/docs/blob/master/docs/tools-reference/custom-kernels-distros/install-alpine-linux-on-your-linode.md) written as a working script (with fixed networking!), so big thanks to him.
