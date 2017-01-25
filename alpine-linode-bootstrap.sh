@@ -79,7 +79,7 @@ mount --bind /dev /alpine/dev
 
 chroot /alpine /bin/sh<<CHROOT
 
-setup-apkrepos -f
+setup-apkrepos -r
 apk update
 
 setup-hostname -n $HOST
