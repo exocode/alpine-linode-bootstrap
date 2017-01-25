@@ -116,7 +116,15 @@ Then install docker-compose, run:
     pip install docker-compose
 
 
+## Helpful scripts
 
+sets automatically the fastest apk repo
+
+    https://raw.githubusercontent.com/padthaitofuhot/apkfastestmirror/master/apkfastestmirror.sh
+    ash ./apkfastestmirror.sh --install
+    apkfastestmirror -r
+    
+https://github.com/padthaitofuhot/apkfastestmirror
 
 ## Credit
 
