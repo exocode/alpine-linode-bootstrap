@@ -120,7 +120,7 @@ Then install docker-compose, run:
 
 sets automatically the fastest apk repo
 
-    https://raw.githubusercontent.com/padthaitofuhot/apkfastestmirror/master/apkfastestmirror.sh
+    wget https://raw.githubusercontent.com/padthaitofuhot/apkfastestmirror/master/apkfastestmirror.sh
     ash ./apkfastestmirror.sh --install
     apkfastestmirror -r
     
