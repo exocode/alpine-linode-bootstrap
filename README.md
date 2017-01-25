@@ -89,9 +89,11 @@ At this point, you should be able to connect to your server via SSH.
 
 ## Docker
 
-uncomment `http://dl-6.alpinelinux.org/alpine/edge/community` in `/etc/apk/repositories`
+uncomment `http://your_choosen_repo/alpine/edge/community` in `/etc/apk/repositories`
 
     vi /etc/apk/repositories 
+    
+    apk update # to update the new repo list
     
     apk add docker
 
