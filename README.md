@@ -126,6 +126,18 @@ sets automatically the fastest apk repo
     
 https://github.com/padthaitofuhot/apkfastestmirror
 
+## Rancher
+
+If your DB runs on another host (which is best practice) run:
+
+    docker run -d --restart=always -p 8080:8080 \
+      -e CATTLE_DB_CATTLE_MYSQL_HOST=<hostname or IP of MySQL instance> \
+      -e CATTLE_DB_CATTLE_MYSQL_PORT=<port> \
+      -e CATTLE_DB_CATTLE_MYSQL_NAME=<Name of Database> \
+      -e CATTLE_DB_CATTLE_USERNAME=<Username> \
+      -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
+      rancher/server:v1.0.2
+
 ## Credit
 
 This script is basically [Andy Leap's guide](https://github.com/andyleap/docs/blob/master/docs/tools-reference/custom-kernels-distros/install-alpine-linux-on-your-linode.md) written as a working script (with fixed networking!), so big thanks to him.
