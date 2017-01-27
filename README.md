@@ -89,6 +89,13 @@ Linode recommends the `openssh` server if you want full SFTP access.
 
 At this point, you should be able to connect to your server via SSH.
 
+
+## iptables / Firewall
+
+Install the iptables firewall. Docker adds its own rules if you start a container.
+
+    apk add iptables
+
 ## Docker
 
 uncomment `http://your_choosen_repo/alpine/edge/community` in `/etc/apk/repositories`
