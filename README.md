@@ -1,10 +1,10 @@
 # Alpine Linode Docker Bootstrap
 
-A simple script that can be executed in recovery mode to bootstrap Alpine Linux on a Linode server.
+A simple script that can be executed in __recovery mode__ to bootstrap Alpine Linux on a Linode server.
 
 ## Creating a Linode
 
-This script assumes your Linode will have three disks for boot, root, and swap, assigned to /dev/sda, /dev/sdb, /dev/sdc, respectively. 
+This script assumes your Linode will have __three disks__ for __boot, root, and swap__, assigned to /dev/sda, /dev/sdb, /dev/sdc, respectively. 
 
     boot /dev/sda
     root /dev/sdb
@@ -19,7 +19,9 @@ Once the disks have been created, make a new configuration profile. It can be la
 - **Filesystem/Boot Helpers** all to *No*. 
 - Everything else should be left as the default. 
 
-Boot the Linode into recovery mode with the disks assigned as above.
+Boot the Linode into __recovery mode__ with the disks assigned as above.
+
+Once logged in do the following:
 
 ## Prepare to allow HTTPS
     	
@@ -31,7 +33,21 @@ Connect to the Linode with Lish either via SSH or the browser console. To downlo
 
     curl -o- https://raw.githubusercontent.com/exocode/alpine-linode-bootstrap/master/alpine-linode-bootstrap.sh | bash
 
-__ if errors occour choose another mirror by uncommenting it 
+__if errors occour choose another mirror or rerun the script
+
+
+## Helpful scripts for choosing another mirror
+
+sets automatically the fastest apk repo
+
+    wget https://raw.githubusercontent.com/padthaitofuhot/apkfastestmirror/master/apkfastestmirror.sh
+    ash ./apkfastestmirror.sh --install
+    apkfastestmirror -r
+    
+https://github.com/padthaitofuhot/apkfastestmirror
+
+
+## Finished installation
 
 Once that finishes, shut the Linode down from recovery mode and, staying in the Lish console, run:
   
@@ -40,19 +56,6 @@ Once that finishes, shut the Linode down from recovery mode and, staying in the 
 After a bit, you should be at the Alpine login screen. The root user, by default, does not have a password. At this point, you can install an SSH server, which pretty much completes the installation.
 
 ## Further Installation
-
-### Set up and start networking
-
-    setup-interfaces
-
-Press enter 3 times to accept the defaults of 
-    - eth0
-    - dhcp
-    - no
-
-then restart the networking service:
-    
-    service networking restart
 
 ### Set a root password
     
@@ -85,7 +88,6 @@ Linode recommends the `openssh` server if you want full SFTP access.
 `dropbear` is a more lightweight option, although it only provides SSH access.
 
 At this point, you should be able to connect to your server via SSH.
-  
 
 ## Docker
 
@@ -115,17 +117,6 @@ Then install docker-compose, run:
 
     pip install docker-compose
 
-
-## Helpful scripts
-
-sets automatically the fastest apk repo
-
-    wget https://raw.githubusercontent.com/padthaitofuhot/apkfastestmirror/master/apkfastestmirror.sh
-    ash ./apkfastestmirror.sh --install
-    apkfastestmirror -r
-    
-https://github.com/padthaitofuhot/apkfastestmirror
-
 ## Rancher
 
 If your DB runs on another host (which is best practice) run:
@@ -137,6 +128,20 @@ If your DB runs on another host (which is best practice) run:
       -e CATTLE_DB_CATTLE_USERNAME=<Username> \
       -e CATTLE_DB_CATTLE_PASSWORD=<Password> \
       rancher/server:v1.0.2
+
+
+### Reconfigure networking (you can skip this, we already done this for you)
+
+    setup-interfaces
+    - eth0
+    - dhcp
+    - no
+
+then restart the networking service:
+    
+    service networking restart
+
+
 
 ## Credit
 
