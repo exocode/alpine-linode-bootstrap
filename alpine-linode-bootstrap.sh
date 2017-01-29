@@ -76,6 +76,19 @@ cp /etc/resolv.conf /alpine/etc/resolv.conf
 
 echo ttyS0 >> /alpine/etc/securetty
 
+# This is only a "hack" because of this issue:
+# http://bugs.alpinelinux.org/issues/6488
+cat << EOF > /alpine/etc/init.d/ip-resolve-hack
+#!/sbin/openrc-run
+start() {
+        ebegin "Resolving IP address"
+        eindent
+        ifdown -f eth0 && ifup -f eth0
+        eend
+}
+EOF
+
+
 mount --bind /proc /alpine/proc
 mount --bind /dev /alpine/dev
 
@@ -91,6 +104,7 @@ printf "$INTERFACES" | setup-interfaces -i
 rc-update add networking boot
 rc-update add urandom boot
 rc-update add crond
+rc-update add ip-resolve-hack boot
 
 apk add linux-grsec
 
