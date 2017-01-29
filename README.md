@@ -113,6 +113,14 @@ To start the Docker daemon at boot, run:
 Then to start the Docker daemon manually, run:
 
     service docker start
+    
+## Extend your Java 
+
+I ran into the issue that heavy used apps wont start with docker (in my example Rancher).
+I had to do this:
+
+    sysctl -w kernel.pax.softmode=1
+
 
 ## Docker Compose
 
