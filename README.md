@@ -161,3 +161,16 @@ then restart the networking service:
 ## Credit
 
 This script is basically [Andy Leap's guide](https://github.com/andyleap/docs/blob/master/docs/tools-reference/custom-kernels-distros/install-alpine-linux-on-your-linode.md) written as a working script (with fixed networking!), so big thanks to him.
+
+
+# ISSUE
+
+I had problems on my host with the IP address. Everytime I reboot the IP got lost. Only after a ``service networking restart`` solved my IP. My workaround is to edit ``vi /etc/init.d/networking``:
+
+In the ``start()`` section change this line
+
+    if ! ifup $iface >/dev/null; then
+
+to this (forces a restart)
+
+    if ! ifup -f $iface >/dev/null; then
